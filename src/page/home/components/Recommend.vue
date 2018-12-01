@@ -2,7 +2,7 @@
   <div>
     <div class="title">热销推荐</div>
     <ul>
-      <li class="item border-bottom" v-for="item of recommendList" :key="item.id">
+      <li class="item border-bottom" v-for="item of list" :key="item.id">
         
         <img class="item-img" :src="item.imgUrl" alt="">
         
@@ -18,27 +18,30 @@
 <script>
   export default {
     name:'HomeRecommend',
+    props:{
+     list:Array
+    },
     data(){
       return {
-        recommendList:[
-          {
-            id:'0001',
-            imgUrl:'http://img1.qunarzz.com/sight/p0/1508/12/4e6170303c63bdb7070fb1987480afab.water.jpg_200x200_0775a71c.jpg',
-            title:'杭州极地海洋世界',
-            desc:'世界三大名秀之一，杭州宋城的灵魂杭州宋城'
-          },
-          {
-            id:'0001',
-            imgUrl:'http://img1.qunarzz.com/sight/p0/1508/12/4e6170303c63bdb7070fb1987480afab.water.jpg_200x200_0775a71c.jpg',
-            title:'杭州极地海洋世界',
-            desc:'世界三大名秀之一，杭州宋城的灵魂杭州宋城'
-          },{
-            id:'0001',
-            imgUrl:'http://img1.qunarzz.com/sight/p0/1508/12/4e6170303c63bdb7070fb1987480afab.water.jpg_200x200_0775a71c.jpg',
-            title:'杭州极地海洋世界',
-            desc:'世界三大名秀之一，杭州宋城的灵魂杭州宋城'
-          }
-        ]
+        // recommendList:[
+        //   {
+        //     id:'0001',
+        //     imgUrl:'http://img1.qunarzz.com/sight/p0/1508/12/4e6170303c63bdb7070fb1987480afab.water.jpg_200x200_0775a71c.jpg',
+        //     title:'杭州极地海洋世界',
+        //     desc:'世界三大名秀之一，杭州宋城的灵魂杭州宋城'
+        //   },
+        //   {
+        //     id:'0001',
+        //     imgUrl:'http://img1.qunarzz.com/sight/p0/1508/12/4e6170303c63bdb7070fb1987480afab.water.jpg_200x200_0775a71c.jpg',
+        //     title:'杭州极地海洋世界',
+        //     desc:'世界三大名秀之一，杭州宋城的灵魂杭州宋城'
+        //   },{
+        //     id:'0001',
+        //     imgUrl:'http://img1.qunarzz.com/sight/p0/1508/12/4e6170303c63bdb7070fb1987480afab.water.jpg_200x200_0775a71c.jpg',
+        //     title:'杭州极地海洋世界',
+        //     desc:'世界三大名秀之一，杭州宋城的灵魂杭州宋城'
+        //   }
+        // ]
       }
     }
   }
@@ -46,7 +49,6 @@
 </script >
 <style lang="stylus" scoped>
  .title
-   margin-top: .2rem
    line-height: .8rem
    background: #eeeeee
    text-indent: .2rem

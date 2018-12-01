@@ -8,14 +8,17 @@
       <span class="iconfont">&#xe632;</span>
       输入城市/景点/游玩主题</div>
     <div class="header-right">
-      城市
+      {{city}}
       <span class="iconfont arrow-icon">&#xe65e;</span>
      </div>
   </div>
 </template>
 <script>
   export default {
-    name:'HomeHeader'
+    name:'HomeHeader',
+    props:{
+      city: String
+    }
   }
   // @import '../../../assets/styles/varibles.styl'在build 文件里webpack.base 配置了变量  可改为
   // @import '~styles/assets/styles/varibles.styl'
