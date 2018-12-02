@@ -2,8 +2,18 @@
   <div>
     <city-header></city-header>
     <city-search></city-search>
-    <city-list :cities="cities" :hot="hotCities"></city-list>
-    <city-alphabet :cities="cities"></city-alphabet>
+    <city-list 
+       :cities="cities" 
+       :hot="hotCities"
+       :letter="letter"
+    >
+
+    </city-list>
+    <city-alphabet 
+      :cities="cities"
+      @change ='handleLetterChange'
+      >
+      </city-alphabet>
   </div>
 </template>
 <script>
@@ -23,7 +33,8 @@ import CityAlphabet from './components/Alphabet'
     data(){
       return {
         cities:{},
-        hotCities:[]
+        hotCities:[],
+        letter:''
       }
     },
     methods:{
@@ -38,9 +49,13 @@ import CityAlphabet from './components/Alphabet'
          const data = res.data
          this.cities = data.cities
          this.hotCities = data.hotCities
-         console.log(this.cities)
+         //console.log(this.cities)
         //  console.log(this.hotCities)
        }
+     },
+     handleLetterChange(letter){
+       //console.log(letter)
+       this.letter = letter
      }
     },
     mounted(){
