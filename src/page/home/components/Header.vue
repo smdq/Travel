@@ -9,17 +9,22 @@
       输入城市/景点/游玩主题</div>
     <router-link to="/city">
       <div class="header-right">
-      {{this.$store.state.city}}
+      <!-- {{this.$store.state.city}} -->
+      {{this.city}}
       <span class="iconfont arrow-icon">&#xe65e;</span>
      </div>
     </router-link>
   </div>
 </template>
 <script>
+import {mapState} from 'vuex'
   export default {
     name:'HomeHeader',
     props:{
       // city: String
+    },
+    computed:{
+      ...mapState(['city'])
     }
   }
   // @import '../../../assets/styles/varibles.styl'在build 文件里webpack.base 配置了变量  可改为
@@ -41,7 +46,8 @@
        .back-icon
          font-size: .4rem
     .header-right
-      width: 1.24rem
+      min-width: 1.04rem
+      padding: 0 .1rem
       float:right
       text-align:center
       line-height: .86rem
