@@ -18,6 +18,11 @@
     name:'CityAlphabet',
     props:{
       cities:Object
+     
+    },
+    updated(){
+      // A到蓝色底部的距离
+     this.startY = this.$refs['A'][0].offsetTop
     },
     computed:{
        letters(){
@@ -30,7 +35,9 @@
     },
     data(){
       return {
-        touchStatus: false
+        touchStatus: false,
+         startY:0,
+         timer:null,//用来数据节流
       }
     },
     methods:{
@@ -44,18 +51,24 @@
       handleTouchMove(e){
 
       if(this.touchStatus){
-        // A到蓝色底部的距离
-        const startY = this.$refs['A'][0].offsetTop
-        //console.log(startY)
+        
+        if(this.timer){
+          clearTimeout(this.timer)
+        }
+
+        this.timer = setTimeout(() =>{
+          //console.log(startY)
         //滑动的位置减去蓝色区域的高度
         const touchY = e.touches[0].clientY -79
         //触动的位置减去A到蓝色底部的差值
-        const index = Math.floor((touchY - startY)/16.8)
+        const index = Math.floor((touchY - this.startY)/16.8)
        // console.log(index)
         if(index >=0 && index <this.letters.length){
           
           this.$emit('change',this.letters[index])
         }
+        },16)
+        
       }
       },
       handleTouchEnd(){
