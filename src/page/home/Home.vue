@@ -13,6 +13,7 @@ import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
 import HomeRecommend from './components/Recommend'  
 import HomeWeekend from './components/Weekend' 
+import {mapState} from 'vuex'
 import axios from 'axios' 
   export default {
     name:'Home',
@@ -23,19 +24,23 @@ import axios from 'axios'
       HomeRecommend,
       HomeWeekend
     },
+    computed:{
+    ...mapState(['city'])
+    },
     data(){
       return{
         // city:'',
         swiperList:[],
         iconList:[],
         recommendList:[],
-        weekendList:[]
+        weekendList:[],
+        lastCity:''
       }
     },
     methods:{
       getHomeInfo(){
         // 在哪config index.js文件配置了相关的内容
-        axios.get('/api/index.json')
+        axios.get('/api/index.json?city='+this.city)
         .then(this.getHomeInfoSuccsee)
       },
       getHomeInfoSuccsee(res){
@@ -52,7 +57,18 @@ import axios from 'axios'
       }
     },
     mounted(){
+      this.lastCity = this.city
+      console.log('mounted')
         this.getHomeInfo()
+    },
+    activated(){
+      // 当首页App使用keep-alive 是  要重新渲染返回城市页面的时候，该钩子函数会执行
+      if(this.lastCity !== this.city){
+        //同时要把原来的值变成新的值
+        this.lastCity = this.city
+        this.getHomeInfo()
+      }
+    console.log('activated')
     }
   }
 </script>
