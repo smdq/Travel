@@ -9,6 +9,7 @@
         <li class="search-item"
          v-for="(item,index) of list" 
          :key="index"
+         @click="handleCityClick(item.name)"
          >
          {{item.name}}
          </li >
@@ -35,6 +36,13 @@ export default {
     hasnoData() {
       return !this.list.length
     }
+  },
+  methods:{
+    handleCityClick(city){
+        this.$store.commit('changeCity',city)
+      // console.log(city)
+      this.$router.push('/')
+      }
   },
   watch: {
     keyword(){
