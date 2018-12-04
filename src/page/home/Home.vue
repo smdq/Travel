@@ -29,7 +29,7 @@ import axios from 'axios'
     },
     data(){
       return{
-        // city:'',
+        cityn:this.city,
         swiperList:[],
         iconList:[],
         recommendList:[],
@@ -40,7 +40,7 @@ import axios from 'axios'
     methods:{
       getHomeInfo(){
         // 在哪config index.js文件配置了相关的内容
-        axios.get('/api/index.json?city='+this.city)
+        axios.get('/api/index.json?city='+this.cityn)
         .then(this.getHomeInfoSuccsee)
       },
       getHomeInfoSuccsee(res){
@@ -57,15 +57,15 @@ import axios from 'axios'
       }
     },
     mounted(){
-      this.lastCity = this.city
+      this.lastCity = this.cityn
       console.log('mounted')
         this.getHomeInfo()
     },
     activated(){
       // 当首页App使用keep-alive 是  要重新渲染返回城市页面的时候，该钩子函数会执行
-      if(this.lastCity !== this.city){
+      if(this.lastCity !== this.cityn){
         //同时要把原来的值变成新的值
-        this.lastCity = this.city
+        this.lastCity = this.cityn
         this.getHomeInfo()
       }
     console.log('activated')
