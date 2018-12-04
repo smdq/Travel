@@ -44,7 +44,12 @@
       }
     }
     },
+    //显示该页面的时候执行该函数
     activated(){
+      window.addEventListener('scroll',this.handleScroll)
+    },
+    //当离开了该页面就会对上面activated进行解绑
+    deactivated(){
       window.addEventListener('scroll',this.handleScroll)
     }
   }
